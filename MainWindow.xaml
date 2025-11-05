@@ -1,0 +1,22 @@
+﻿<Window x:Class="Murzayanov41.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Murzayanov41"
+        mc:Ignorable="d"
+        Title="Murzayanov41" Height="450" Width="800" FontFamily="Comic Sans MS" Icon="/Images/icon.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Image Source="/Images/logo.png" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"></Image>
+        <TextBlock Text="41 размер" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30"></TextBlock>
+        <Button Name="GoBackButton" Content="Назад" VerticalAlignment="Center" HorizontalAlignment="Right" Click="GoBackButton_Click" Visibility="Hidden"></Button>
+        
+        <Frame Name="MainFrame" Grid.Row="1" ContentRendered="MainFrame_ContentRendered" NavigationUIVisibility="Hidden"></Frame>
+    </Grid>
+</Window>
