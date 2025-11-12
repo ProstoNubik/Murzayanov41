@@ -13,19 +13,21 @@ namespace Murzayanov41
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Murzayanov41Entities : DbContext
+    public partial class MurzayanovEntities : DbContext
     {
-        private static Murzayanov41Entities _context;
-        public static Murzayanov41Entities GetContext()
+        static private MurzayanovEntities _context;
+
+        static public MurzayanovEntities GetContext()
         {
             if (_context == null)
             {
-                _context = new Murzayanov41Entities();
+                _context = new MurzayanovEntities();
             }
             return _context;
         }
-        public Murzayanov41Entities()
-            : base("name=Murzayanov41Entities")
+
+        public MurzayanovEntities()
+            : base("name=MurzayanovEntities")
         {
         }
     

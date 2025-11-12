@@ -11,8 +11,7 @@ namespace Murzayanov41
 {
     using System;
     using System.Collections.Generic;
-    using System.Web;
-
+    
     public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -43,8 +42,10 @@ namespace Murzayanov41
                 {
                     return null;
                 }
-
-                return "Images/" + ProductPhoto;
+                else
+                {
+                    return "Images/" + ProductPhoto;
+                }
             }
         }
     

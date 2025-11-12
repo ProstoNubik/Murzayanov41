@@ -20,15 +20,73 @@ namespace Murzayanov41
     /// </summary>
     public partial class ProductPage : Page
     {
+        private void UpdateProducts()
+        {
+            var currentServices = MurzayanovEntities.GetContext().Product.ToList();
+
+            if (ComboType.SelectedIndex == 0)
+            {
+                currentServices = currentServices.Where(p => (Convert.ToInt32(p.ProductDiscountAmount) >= 0 && Convert.ToInt32(p.ProductDiscountAmount) <= 100)).ToList();
+            }
+            if (ComboType.SelectedIndex == 1)
+            {
+                currentServices = currentServices.Where(p => (Convert.ToInt32(p.ProductDiscountAmount) >= 0 && Convert.ToInt32(p.ProductDiscountAmount) < 10)).ToList();
+            }
+            if (ComboType.SelectedIndex == 2)
+            {
+                currentServices = currentServices.Where(p => (Convert.ToInt32(p.ProductDiscountAmount) >= 10 && Convert.ToInt32(p.ProductDiscountAmount) < 15)).ToList();
+            }
+            if (ComboType.SelectedIndex == 3)
+            {
+                currentServices = currentServices.Where(p => (Convert.ToInt32(p.ProductDiscountAmount) >= 15 && Convert.ToInt32(p.ProductDiscountAmount) <= 100)).ToList();
+            }
+
+            currentServices = currentServices.Where(p => (p.ProductName.ToLower().Contains(TBoxSearch.Text.ToLower()))).ToList();
+
+            ProductListView.ItemsSource = currentServices;
+
+            if (RButtonUp.IsChecked.Value)
+            {
+                ProductListView.ItemsSource = currentServices.OrderBy(p => p.ProductCost).ToList();
+            }
+            if (RButtonDown.IsChecked.Value)
+            {
+                ProductListView.ItemsSource = currentServices.OrderByDescending(p => p.ProductCost).ToList();
+            }
+            
+            TBlockProductsCount.Text = "Выведено элементов " + Convert.ToString(currentServices.Count) + " из " + Convert.ToString(MurzayanovEntities.GetContext().Product.Count());
+        }
+
         public ProductPage()
         {
             InitializeComponent();
-            ProductListView.ItemsSource = Murzayanov41Entities.GetContext().Product.ToList();
+            ComboType.SelectedIndex = 0;
+            UpdateProducts();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Manager.MainFrame.Navigate(new AddEditPage());
+        }
+
+        private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateProducts();
+        }
+
+        private void RButtonUp_Checked(object sender, RoutedEventArgs e)
+        {
+            UpdateProducts();
+        }
+
+        private void RButtonDown_Checked(object sender, RoutedEventArgs e)
+        {
+            UpdateProducts();
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateProducts();
         }
     }
 }
