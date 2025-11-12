@@ -23,6 +23,7 @@ namespace Murzayanov41
         public ProductPage()
         {
             InitializeComponent();
+            ProductListView.ItemsSource = Murzayanov41Entities.GetContext().Product.ToList();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
