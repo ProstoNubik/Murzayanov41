@@ -57,10 +57,34 @@ namespace Murzayanov41
             TBlockProductsCount.Text = "Выведено элементов " + Convert.ToString(currentServices.Count) + " из " + Convert.ToString(MurzayanovEntities.GetContext().Product.Count());
         }
 
-        public ProductPage()
+        public ProductPage(User user)
         {
             InitializeComponent();
-            ComboType.SelectedIndex = 0;
+
+            if (user != null)
+            {
+                FIOTBlock.Text = user.UserName + " " + user.UserSurname + " " + user.UserPatronymic;
+
+                switch (user.UserRole)
+                {
+                    case 1:
+                        RoleTBlock.Text = "Клиент";
+                        break;
+                    case 2:
+                        RoleTBlock.Text = "Менеджер";
+                        break;
+                    case 3:
+                        RoleTBlock.Text = "Администратор";
+                        break;
+                }
+            }
+            else
+            {
+                FIOTBlock.Text = "None";
+                RoleTBlock.Text = "Клиент";
+            }
+
+                ComboType.SelectedIndex = 0;
             UpdateProducts();
         }
 
