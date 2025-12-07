@@ -11,7 +11,8 @@ namespace Murzayanov41
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -34,6 +35,8 @@ namespace Murzayanov41
         public string ProductPhoto { get; set; }
         public string OrderStatus { get; set; }
 
+        public int SelectedProductQuantity { get; set; }
+
         public string ImageSource
         {
             get
@@ -42,10 +45,8 @@ namespace Murzayanov41
                 {
                     return null;
                 }
-                else
-                {
-                    return "Images/" + ProductPhoto;
-                }
+
+                return "Images/" + ProductPhoto;
             }
         }
     

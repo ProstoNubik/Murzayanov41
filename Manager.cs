@@ -10,5 +10,8 @@ namespace Murzayanov41
     internal class Manager
     {
         static public Frame MainFrame { get; set; }
+        static public int userID { get; set; }
+
+        static public Button OrderButton { get; set; }
     }
 }

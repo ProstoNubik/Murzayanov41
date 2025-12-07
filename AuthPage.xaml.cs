@@ -107,6 +107,8 @@ namespace Murzayanov41
                         CaptchaText = "";
 
                         CaptchaPanel.Visibility = Visibility.Hidden;
+
+                        Manager.userID = user.UserID;
                     }
                 }
                 else

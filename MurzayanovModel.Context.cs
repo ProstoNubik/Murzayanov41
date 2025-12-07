@@ -15,14 +15,14 @@ namespace Murzayanov41
     
     public partial class MurzayanovEntities : DbContext
     {
-        static private MurzayanovEntities _context;
-
-        static public MurzayanovEntities GetContext()
+        private static MurzayanovEntities _context;
+        public static MurzayanovEntities GetContext()
         {
             if (_context == null)
             {
                 _context = new MurzayanovEntities();
             }
+
             return _context;
         }
 

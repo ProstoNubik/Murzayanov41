@@ -12,21 +12,22 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
-        
-        
-        <StackPanel Orientation="Horizontal" Grid.Row="0">
-            <TextBlock Text="Вы авторизованы как " FontSize="20"></TextBlock>
-            <TextBlock Name="FIOTBlock" FontSize="20"></TextBlock>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="1">
-            <TextBlock Text="Роль:" FontSize="20"></TextBlock>
-            <TextBlock Name="RoleTBlock" FontSize="20"></TextBlock>
+
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Вы авторизованы как " FontSize="20"></TextBlock>
+                <TextBlock Name="FIOTBlock" FontSize="20"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Роль:" FontSize="20"></TextBlock>
+                <TextBlock Name="RoleTBlock" FontSize="20"></TextBlock>
+            </StackPanel>
         </StackPanel>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
             <TextBlock Name="TBlockProductsCount" FontSize="20"></TextBlock>
             
             <StackPanel Orientation="Vertical">
@@ -50,7 +51,13 @@
             </StackPanel>
         </StackPanel>
 
-        <ListView Name="ProductListView" Grid.Row="3">
+        <ListView Name="ProductListView" Grid.Row="2" SelectionChanged="ProductListView_SelectionChanged">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Добавить к заказу" Click="MenuItem_Click"></MenuItem>
+                </ContextMenu>
+            </ListView.ContextMenu>
+            
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -89,5 +96,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <Button Name="OrderButton" Content="Оформить заказ" Click="OrderButton_Click" Grid.Row="3" Visibility="Hidden"></Button>
     </Grid>
 </Page>

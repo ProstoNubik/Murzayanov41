@@ -20,6 +20,9 @@ namespace Murzayanov41
     /// </summary>
     public partial class ProductPage : Page
     {
+        private List<Product> selectedProducts = new List<Product>();
+        private List<OrderProduct> selectedOrderProducts = new List<OrderProduct>();
+
         private void UpdateProducts()
         {
             var currentServices = MurzayanovEntities.GetContext().Product.ToList();
@@ -60,6 +63,8 @@ namespace Murzayanov41
         public ProductPage(User user)
         {
             InitializeComponent();
+
+            Manager.OrderButton = OrderButton;
 
             if (user != null)
             {
@@ -111,6 +116,56 @@ namespace Murzayanov41
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UpdateProducts();
+        }
+
+        private void ProductListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (ProductListView.SelectedIndex >= 0)
+            {
+                var prod = ProductListView.SelectedItem as Product;
+                selectedProducts.Add(prod);
+
+                var newOrderProd = new OrderProduct();
+                newOrderProd.OrderID = 1;
+
+                //Номер продукта в новую запись.
+                newOrderProd.ProductArticleNumber = prod.ProductArticleNumber;
+                newOrderProd.OrderProductCount = 1;
+
+                //Проверим, есть ли уже такой заказ.
+                var selOP = selectedOrderProducts.Where(p => Equals(p.ProductArticleNumber, prod.ProductArticleNumber));
+                //MessageBox.Show(selOP.Count().ToString());
+                if (selOP.Count() == 0)
+                {
+                    selectedOrderProducts.Add(newOrderProd);
+                }
+                else
+                {
+                    foreach (OrderProduct p in selectedOrderProducts)
+                    {
+                        if (p.ProductArticleNumber == prod.ProductArticleNumber)
+                        {
+                            p.OrderProductCount++;
+                        }
+                    }
+                }
+            }
+
+            OrderButton.Visibility = Visibility.Visible;
+            ProductListView.SelectedIndex = -1;
+        }
+
+        private void OrderButton_Click(object sender, RoutedEventArgs e)
+        {
+            selectedProducts = selectedProducts.Distinct().ToList();
+            OrderWindow orderWindow = new OrderWindow(selectedOrderProducts, selectedProducts, FIOTBlock.Text);
+            orderWindow.ShowDialog();
         }
     }
 }
