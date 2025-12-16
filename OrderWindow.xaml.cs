@@ -70,7 +70,7 @@ namespace Murzayanov41
                     {
                         p.ProductQuantityInStock = q.OrderProductCount;
                     }
-                }*/
+                }stet*/
             }
 
             this.selectedOrderProducts = selectedOrderProducts;
