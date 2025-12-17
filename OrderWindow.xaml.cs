@@ -132,6 +132,27 @@ namespace Murzayanov41
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            StringBuilder errors = new StringBuilder();
+
+            if (PickupPointsComboBox.SelectedIndex == -1)
+            {
+                errors.AppendLine("Выберите пункт выдачи.");
+            }
+
+            /*foreach (Product p in OrderListView.Items)
+            {
+                if (p.SelectedProductQuantity > p.ProductQuantityInStock)
+                {
+                    errors.AppendLine("У товара " + p.ProductName + " выбрано больше количества, чем есть на складе.");
+                }
+            }*/
+
+            if (errors.Length > 0)
+            {
+                MessageBox.Show(errors.ToString());
+                return;
+            }
+
             currentOrder.OrderID = Convert.ToInt32(OrderIDTBlock.Text);
             currentOrder.OrderDate = Convert.ToDateTime(OrderDatePicker.Text);
             currentOrder.OrderDeliveryDate = Convert.ToDateTime(OrderDeliveryDatePicker.Text);

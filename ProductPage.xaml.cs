@@ -89,7 +89,7 @@ namespace Murzayanov41
                 RoleTBlock.Text = "Клиент";
             }
 
-                ComboType.SelectedIndex = 0;
+            ComboType.SelectedIndex = 0;
             UpdateProducts();
         }
 

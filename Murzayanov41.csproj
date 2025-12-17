@@ -67,10 +67,20 @@
     <Compile Include="AuthPage.xaml.cs">
       <DependentUpon>AuthPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MurzayanovModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MurzayanovModel.Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="MurzayanovModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MurzayanovModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MurzayanovModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MurzayanovModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Order.cs">
       <DependentUpon>MurzayanovModel.tt</DependentUpon>
@@ -127,16 +137,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Manager.cs" />
-    <Compile Include="MurzayanovModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MurzayanovModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MurzayanovModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MurzayanovModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="ProductPage.xaml.cs">
       <DependentUpon>ProductPage.xaml</DependentUpon>
     </Compile>

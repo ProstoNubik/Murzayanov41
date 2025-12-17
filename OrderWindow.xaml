@@ -23,10 +23,10 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Text="Дата формирования заказа" FontSize="20"></TextBlock>
-        <DatePicker Name="OrderDatePicker" Grid.Column="1" FontSize="20"></DatePicker>
+        <DatePicker Name="OrderDatePicker" Grid.Column="1" FontSize="20" IsEnabled="False"></DatePicker>
 
         <TextBlock Grid.Row="1" FontSize="20" Text="Дата доставки заказа"></TextBlock>
-        <DatePicker Name="OrderDeliveryDatePicker" Grid.Row="1" Grid.Column="1" FontSize="20"></DatePicker>
+        <DatePicker Name="OrderDeliveryDatePicker" Grid.Row="1" Grid.Column="1" FontSize="20" IsEnabled="False"></DatePicker>
 
         <TextBlock Grid.Row="2" FontSize="20" Text="ФИО клиента"></TextBlock>
         <TextBlock Name="FIOTBlock" Grid.Row="2" Grid.Column="1" FontSize="20"></TextBlock>
